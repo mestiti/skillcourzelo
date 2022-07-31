@@ -1,5 +1,6 @@
 package com.courzelo.quiz_skills.skills.controllers;
 
+import com.courzelo.quiz_skills.skills.entities.Microskills;
 import com.courzelo.quiz_skills.skills.entities.Type;
 import com.courzelo.quiz_skills.skills.entities.dtos.MacroskillsDTO;
 import com.courzelo.quiz_skills.skills.entities.dtos.MicroskillsDTO;
@@ -53,5 +54,14 @@ public class SkillsController {
 	public List<MicroskillsDTO> getsoftmicrobyiduser(@PathVariable("id") String id , @PathVariable("name")  String name) {
 		return iskills.getmicroskills(id,name,Type.SOFT);
 	}
-
+	//get all micro skills from one user according to a hard skill
+	@GetMapping(path = "/getallmicrosoft/{id}")
+	public List<List<Microskills>> allmicrosoft(@PathVariable("id") String id) {
+		return iskills.getallmicroskills(id,Type.SOFT);
+	}
+	//get all micro skills from one user according to a hard skill
+	@GetMapping(path = "/getallmicrohard/{id}")
+	public List<List<Microskills>> allmicrohard(@PathVariable("id") String id) {
+		return iskills.getallmicroskills(id,Type.HARD);
+	}
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-
+import com.courzelo.quiz_skills.skills.entities.Microskills;
 import com.courzelo.quiz_skills.skills.entities.Skills;
 import com.courzelo.quiz_skills.skills.entities.Type;
 import com.courzelo.quiz_skills.skills.entities.dtos.MacroskillsDTO;
@@ -72,7 +72,14 @@ public class SkillsBusiness implements IServiceSkills {
         }
         return l;
         }
+    @Override
+    public List<List<Microskills>> getallmicroskills(String iduser, Type type) {
+        List<List<Microskills>> l = new ArrayList<>();
+        Skills skills = skillsrepository.findskillsByUser(iduser,type);
+        l= skills.getMacroskills().stream().map(macroskills -> macroskills.getMicroskills()).collect(Collectors.toList());
 
+        return l;
+    }
     }
 
 
